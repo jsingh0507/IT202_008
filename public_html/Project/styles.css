@@ -1,23 +1,70 @@
+/* Define colors for alerts */
 .alert-success {
-    background-color: green
+    background-color: #6FCF97;
 }
 
 .alert-warning {
-    background-color: yellow;
+    background-color: #F2C94C;
 }
 
 .alert-danger {
-    background-color: red;
+    background-color: #EB5757;
 }
 
 .alert-info {
-    background-color: teal;
+    background-color: #2F80ED;
 }
-nav li{display: inline; background-color: rebeccapurple;}
-nav li a{color: hotpink}
-input{border-radius: 50%;}
-body{
-    background-color: hotpink;
-    color: rgb(153, 0, 153);
 
+/* Style the nav bar */
+nav {
+    background-color: #8E44AD;
+    padding: 10px;
+    border-radius: 5px;
 }
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+nav li a:hover {
+    background-color: #6C3483;
+}
+
+/* Style the input box */
+input[type="text"] {
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+}
+
+/* Style the body */
+body {
+    background-image: url('https://img.freepik.com/free-photo/gray-abstract-wireframe-technology-background_53876-101941.jpg?w=996&t=st=1681315818~exp=1681316418~hmac=a3c95ff13bcdb1a0998a5bc37e582010bd585ad6aeb3bc2eb0c126301c92a393');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #222222;
+    font-family: Arial, sans-serif;
+}
+/*
+body {
+    background-image: url(https://img.freepik.com/free-photo/gray-abstract-wireframe-technology-background_53876-101941.jpg?w=996&t=st=1681315818~exp=1681316418~hmac=a3c95ff13bcdb1a0998a5bc37e582010bd585ad6aeb3bc2eb0c126301c92a393);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}*/
+
+
+
