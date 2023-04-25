@@ -18,7 +18,12 @@ $account = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Query database for transaction history data
 $stmt = $db->prepare(
-    "SELECT Transactions.*, src.account_number as src_account_number, dest.account_number as dest_account_number FROM Transactions LEFT JOIN Accounts src ON Transactions.account_src = src.id LEFT JOIN Accounts dest ON Transactions.account_dest = dest.id WHERE Transactions.account_src = ? OR Transactions.account_dest = ? ORDER BY Transactions.created DESC LIMIT 10"
+    "SELECT Transactions.*, src.account_number as src_account_number, dest.account_number as dest_account_number 
+     FROM Transactions 
+     LEFT JOIN Accounts src ON Transactions.account_src = src.id 
+     LEFT JOIN Accounts dest ON Transactions.account_dest = dest.id 
+     WHERE (Transactions.account_src = ? OR Transactions.account_dest = ?) AND Transactions.balance_change IS NOT NULL 
+     ORDER BY Transactions.created DESC LIMIT 10"
 );
 $stmt->execute([$id, $id]);
 $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -67,14 +72,17 @@ $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <tbody>
 <?php foreach ($transactions as $transaction): ?>
 <?php // Determine whether current account is the source or destination of transaction
-    // Determine whether current account is the source or destination of transaction
+
+if (!isset($transaction['balance_change'])) {
+    continue;
+}
 
 $is_source = $transaction["account_src"] == $id;
 $other_account_number = $is_source
     ? $transaction["dest_account_number"]
     : $transaction["src_account_number"];
 $transaction_type = $is_source ? "Debit" : "Credit";
-$balance_change = $is_source ? -$transaction["amount"] : $transaction["amount"];
+$balance_change = $is_source ? +$transaction["balance_change"] : $transaction["balance_change"];
 $expected_total = $account["balance"] + $balance_change;
 ?>
 <tr>
