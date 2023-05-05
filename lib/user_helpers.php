@@ -46,3 +46,19 @@ function get_user_id()
     }
     return false;
 }
+
+function get_lastName()
+{
+    if (is_logged_in()) { //we need to check for login first because "user" key may not exist
+        return se($_SESSION["user"], "lastName", "", false);
+    }
+    return false;
+}
+
+function get_firstName()
+{
+    if (is_logged_in()) { //we need to check for login first because "user" key may not exist
+        return se($_SESSION["user"], "firstName", "", false);
+    }
+    return false;
+}
