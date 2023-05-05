@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Transfer</title>
 </head>
 <body>
-    <h2>Transfer</h2>
+    <h2>Internal Transfer</h2>
     <?php if ($success): ?>
         <div><?php echo $success; ?></div>
     <?php endif; ?>
