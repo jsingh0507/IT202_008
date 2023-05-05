@@ -38,7 +38,7 @@
             var targetX = 0;
             var targetY = 0;
             var targetLength = 25;
-            var targetSpeed = 10;
+            var targetSpeed = 10;   //speed of the green square UCID: js274 05/04/2023
 
             // Determine if number a is within the range b to c (exclusive)
             function isWithin(a, b, c) {
@@ -50,10 +50,10 @@
             // ID to track the setTimeout
             var id = null;
 
-            // Define an array of colors for the square
+            // Define an array of colors for the square UCID: js274 05/04/2023
             const squareColors = ['#FF0000', '#00FF00', '#0000FF','#ff3dad','#ac07ff','#06e7ff','#020305','#261c1d','#00d8cd','#0064a6'];
 
-            // Create a variable to keep track of the current color index
+            // Create a variable to keep track of the current color index UCID: js274 05/04/2023
             let currentColorIndex = 0;
 
 
@@ -134,7 +134,7 @@
             context.fillText('Final Score: ' + score, canvas.width / 2, canvas.height / 2);
         }
 
-        // Move the target square to a random position
+        // Move the target square to a random position UCID: js274 05/04/2023
         function moveTarget() {
             targetX = Math.round(Math.random() * canvas.width - targetLength);
             targetY = Math.round(Math.random() * canvas.height - targetLength)
@@ -146,13 +146,13 @@
             context.fillRect(0, 0, 600, 400);
         }
 
-        // Move the target
+        // Move the target   UCID: js274 05/04/2023
         function moveTarget() {
             // Move the target to a random position
             targetX = Math.floor(Math.random() * (canvas.width - targetLength));
             targetY = Math.floor(Math.random() * (canvas.height - targetLength));
         }
-        var originalCountdown = countdown;
+        var originalCountdown = countdown; //set originalCountdown to the intial countdown UCID: js274 05/04/2023
         // The main draw loop
         function draw() {
             erase();
@@ -182,26 +182,26 @@
             if (x + sideLength > canvas.width) {
                 x = canvas.width - sideLength;
             }
-            // Collide with the target
+            // Collide with the target UCID: js274 05/04/2023
             if (isWithin(targetX, x, x + sideLength) || isWithin(targetX + targetLength, x, x + sideLength)) { // X
                 if (isWithin(targetY, y, y + sideLength) || isWithin(targetY + targetLength, y, y + sideLength)) { // Y
-                    // Respawn the target
+                    // Respawn the target  UCID: js274 05/04/2023
                     moveTarget();
-                    // Decrease the size of the square
-                    sideLength = Math.max(sideLength * 0.9, 10); // Decrease by 10% or to a minimum of 10
-                    // Increase the score
+                    // Decrease the size of the square UCID: js274 05/04/2023
+                    sideLength = Math.max(sideLength * 0.9, 10); // Decrease by 10% or to a minimum of 10 UCID: js274 05/04/2023
+                    // Increase the score UCID: js274 05/04/2023
                     score++;
-                    //keep track of the color and changes it from the array
+                    //keep track of the color and changes it from the array UCID: js274 05/04/2023
                     currentColorIndex = (currentColorIndex + 1) % squareColors.length;
-                    if (score === 20) {
+                    if (score === 20) {             //is score reach 20 the countodwn restart UCID: js274 05/04/2023
                         countdown = originalCountdown;
                     }
                 }
             }
-            // Move the target
+            // Move the target  UCID: js274 05/04/2023
             targetX += Math.random() < 0.5 ? -targetSpeed : targetSpeed;
             targetY += Math.random() < 0.5 ? -targetSpeed : targetSpeed;
-            // Keep the target within the bounds
+            // Keep the target within the bounds 
             if (targetX + targetLength > canvas.width) {
                 targetX = canvas.width - targetLength;
             }
@@ -214,7 +214,7 @@
             if (targetY < 0) {
                 targetY = 0;
             }
-            // Draw the square 
+            // Draw the square  UCID: js274 05/04/2023
             context.fillStyle = squareColors[currentColorIndex];
             context.fillRect(x, y, sideLength, sideLength);
             // Draw the target 
