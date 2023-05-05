@@ -1,13 +1,13 @@
 <?php
 require_once(__DIR__ . "/../../partials/nav.php");
 is_logged_in(true);
-?>
+$user_id = get_user_id();
 
-<?php
 $db = getDB();
 
-// Query database for accounts data
-$stmt = $db->prepare("SELECT id, account_number, account_type, balance, created FROM Accounts");
+// Query database for accounts data for the logged-in user
+$stmt = $db->prepare("SELECT id, account_number, account_type, balance, created FROM Accounts WHERE user_id = :user_id");
+$stmt->bindParam(":user_id", $user_id);
 $stmt->execute();
 $accounts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
