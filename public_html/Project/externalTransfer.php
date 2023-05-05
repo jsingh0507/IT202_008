@@ -27,12 +27,12 @@
         $amount = $_POST['amount'];
         $memo = $_POST['memo'];
 
-        // Check for negative values
+        // UCID: js274 05/05/2023 Check for negative values
         if ($amount <= 0) {
             $errors[] = "Amount must be greater than 0.";
         }
 
-        // Check for insufficient funds
+        // UCID: js274 05/05/2023 Check for insufficient funds
         $stmt = $db->prepare("SELECT balance FROM Accounts WHERE id = ?");
         $stmt->execute([$src_account_id]);
         $src_account_balance = $stmt->fetchColumn();
@@ -40,7 +40,7 @@
             $errors[] = "Insufficient funds.";
         }
 
-        // Lookup destination account
+        // UCID: js274 05/05/2023 Lookup destination account
         $stmt = $db->prepare("SELECT Accounts.id, Users.last_name, Accounts.account_number, Accounts.balance FROM Users JOIN Accounts ON Users.id = Accounts.user_id WHERE Users.last_name = ? AND Accounts.account_number LIKE ?");
         $stmt->execute([$dest_last_name, '%'.$dest_account_suffix]);
         $dest_account = $stmt->fetch(PDO::FETCH_ASSOC);

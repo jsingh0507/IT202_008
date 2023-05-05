@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $amount = $_POST['amount'];
     $memo = $_POST['memo'];
 
-    if ($src_account_id == $dest_account_id) {
+    if ($src_account_id == $dest_account_id) {           //UCID: JS274 05/05/2023 if the source account and destination acc. are same then caanot transfer
         $errors[] = "Cannot transfer to the same account.";
     } else {
         $stmt = $db->prepare("SELECT account_number, balance FROM Accounts WHERE id = ?");
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$dest_account_id]);
         $dest_account = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($amount <= 0) {
+        if ($amount <= 0) {                         //UCID: JS274 05/05/2023  amount must not be negative for transfers
             $errors[] = "Amount must be greater than 0.";
         }
 
